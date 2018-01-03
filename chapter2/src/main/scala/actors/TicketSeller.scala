@@ -11,8 +11,9 @@ var tickets = Vector.empty[Ticket]
   override def receive: Receive = {
     case Add(newTickets) => tickets = tickets ++ newTickets
     case Buy(nrOfTickets) =>
-      val entries = tickets.take(nrOfTickets).toVector
-      if(entries.size > nrOfTickets) {
+      val entries = tickets.take(nrOfTickets)
+      // println(s"entries.size ${entries.size} nrOfTickets $nrOfTickets")
+      if(entries.size >= nrOfTickets) {
         sender() ! Tickets(event, entries)
         tickets = tickets.drop(nrOfTickets)
       } else {

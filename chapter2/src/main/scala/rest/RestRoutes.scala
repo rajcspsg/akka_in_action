@@ -49,7 +49,7 @@ trait RestRoutes extends BoxOfficeApi with EventMarshalling {
     }
   }
 
-  def ticketsRoute = pathPrefix("events" / Segment / "tickets") { event =>
+  /*def ticketsRoute = pathPrefix("events" / Segment / "tickets") { event =>
     post {
       pathEndOrSingleSlash {
         entity(as[messages.TicketRequest]) { request =>
@@ -62,6 +62,24 @@ trait RestRoutes extends BoxOfficeApi with EventMarshalling {
         }
       }
     }
-  }
+  }*/
+
+  def ticketsRoute =
+    pathPrefix("events" / Segment / "tickets") { event =>
+      post {
+        pathEndOrSingleSlash {
+          // POST /events/:event/tickets
+          entity(as[messages.TicketRequest]) { request =>
+            onSuccess(requestTickets(event, request.tickets)) { tickets =>
+              if(tickets.entries.isEmpty){
+                //println(s"request is $request\n event is $event")
+                complete(NotFound)
+              }
+              else complete(Created, tickets)
+            }
+          }
+        }
+      }
+    }
 
 }

@@ -2,7 +2,7 @@ version := "1.0"
 
 scalaVersion := "2.12.4"
 
-name := "Fault Tolerance"
+name := "chapter4"
 
 description := "Supervision and Monitoring"
 

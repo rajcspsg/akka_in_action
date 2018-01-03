@@ -36,8 +36,11 @@ class BoxOffice(implicit  timeout: Timeout) extends Actor {
 
     case GetTickets(event, tickets) =>
       def notFound = sender() ! TicketSellerMessages.Tickets(event)
-      def buy(child: ActorRef) = child ! child.forward(TicketSellerMessages.Buy(tickets))
-      context.child(event).fold(notFound)(buy)
+      def buy(child: ActorRef) = child.forward(TicketSellerMessages.Buy(tickets))
+
+      val actorRef:Option[ActorRef] = context.child(event)
+      // println(s"actorRef is ${actorRef.isDefined}")
+      actorRef.fold(notFound)(buy)
 
     case GetEvent(event) =>
       def notFound = sender() ! None
