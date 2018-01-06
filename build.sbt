@@ -4,6 +4,9 @@ version := "1.0"
 
 scalaVersion := "2.12.4"
 
+fork in run := true
+
+
 lazy val chapter2 = (project in file("chapter2")).settings(
   name := "chapter2",
   version := "1.0",
@@ -36,6 +39,13 @@ lazy val chapter6_RemoteDeploy = (project in file("chapter6_RemoteDeploy")).sett
 
 lazy val chapter6_remoteDeployWithForwarder = (project in file("chapter6_remoteDeployWithForwarder")).settings(
   name := "chapter6_remoteDeployWithForwarder",
+  version := "1.0",
+  scalaVersion := "2.12.4"
+)
+
+
+lazy val chapter14 = (project in file("chapter14")).settings(
+  name := "chapter14",
   version := "1.0",
   scalaVersion := "2.12.4"
 )
