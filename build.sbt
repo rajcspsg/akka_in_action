@@ -43,6 +43,17 @@ lazy val chapter6_remoteDeployWithForwarder = (project in file("chapter6_remoteD
   scalaVersion := "2.12.4"
 )
 
+lazy val chapter8_structuralPatterns = (project in file("chapter8_structuralPatterns")).settings(
+  name:= "chapter8_structuralPatterns",
+  version:= "1.0",
+  scalaVersion := "2.12.4"
+)
+
+lazy val chapter10_messageChannels = (project in file("chapter10_messageChannels")).settings(
+  name:= "chapter10_messageChannels",
+  version:= "1.0",
+  scalaVersion := "2.12.4"
+)
 
 lazy val chapter14 = (project in file("chapter14")).settings(
   name := "chapter14",
